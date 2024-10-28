@@ -19,8 +19,6 @@ app.get("/", (req, res) => {
 
 app.get("/game/:gameName", async(req, res) => {
     const gameName = req.params.gameName;
-    console.log("GAME NAME", gameName);
-    console.log(`CLIENT ID: ${clientID}. CLIENT SECRET: ${clientSecret}`);
     const oauthResponse = await getOAuthToken(clientID, clientSecret);
     const [error, data] = await catchError(findGame(gameName, oauthResponse.access_token));
     

@@ -1,14 +1,11 @@
 import 'dotenv/config';
 import fetch from "node-fetch";
 
-console.log('Environment variables:', {
-    CLIENT_ID: process.env.CLIENT_ID,
-    CLIENT_SECRET: process.env.CLIENT_SECRET
-});
 const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 
 async function getOAuthToken(clientID, clientSecret) {
+
     const oauthUrl = `https://id.twitch.tv/oauth2/token?client_id=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`;
     const response = await fetch(oauthUrl, {
         method: "POST",
@@ -39,6 +36,6 @@ async function findGame(gameName, accessToken) {
 
     return await gamesResponse.json();
     
-    
 }
+
 export {findGame, getOAuthToken, clientID, clientSecret};
