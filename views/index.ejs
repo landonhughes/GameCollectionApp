@@ -5,21 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Collection</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Game Collection App</h1>
-    <input id="game-search-input" type="text" value="" placeholder="Add a game to your collection...">
-    <button id="add-game-button">Add Game</button>
-    <script type="module">
-        const addGameButtonEl = document.querySelector("#add-game-button");
-        const gameSearchInputEl = document.querySelector("#game-search-input");
+    <div id="">
+        <h1>Lookup Games</h1>
+        <div id="search--wrapper">
+            <input id="game-search-input" type="text" value="" placeholder="Add a game to your collection...">
+            <button id="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div id="found-games">
 
-        addGameButtonEl.addEventListener("click", async() => {
-            let response = await fetch(`/game/${gameSearchInputEl.value}`);
-            let json = await response.json()
-            console.log(json)
+    </div>
+    <h2>Current Collection</h2>
+    <div id="collection">
+        
+    </div>
+    <script type="module">
+        const searchButtonEl = document.querySelector("#search-button");
+        const gameSearchInputEl = document.querySelector("#game-search-input");
+        const foundGamesSection = document.querySelector("#found-games");
+        
+
+        searchButtonEl.addEventListener("click", async () => {
+            await performSearch();
             
         });
+
+        function renderGameToScreen(game) {
+            console.log("GAME OBJ", game)
+            const gameDivEl = document.createElement("div");
+            gameDivEl.className = "game--wrapper";
+
+            const gameTitleEl = document.createElement("p");
+            gameTitleEl.textContent = game.name;
+            gameDivEl.appendChild(gameTitleEl);
+
+            if ("cover" in game) {
+                const gameImageEl = document.createElement("img");
+                gameImageEl.src = game.cover.url;
+                gameDivEl.appendChild(gameImageEl);
+            }
+            
+            return gameDivEl;
+            
+        }
+
+        gameSearchInputEl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                performSearch();
+            }
+        });
+
+        async function performSearch() {
+            let response = await fetch(`/game/${gameSearchInputEl.value}`);
+            let jsonArrayOfGames = await response.json();
+
+            for (const game of jsonArrayOfGames) {
+                const gameDiv = renderGameToScreen(game);
+                foundGamesSection.appendChild(gameDiv);
+            }
+
+            console.log(jsonArrayOfGames);
+
+        }
 
     </script>
 </body>
