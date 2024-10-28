@@ -21,7 +21,7 @@ async function getOAuthToken(clientID, clientSecret) {
 
 async function findGame(gameName, accessToken) {
 
-    const gamesResponse = await fetch("https://api.igdb.com/v4/search", {
+    const gamesResponse = await fetch("https://api.igdb.com/v4/games", {
         method: "POST",
         headers: {
             "Client-ID": clientID,
@@ -30,7 +30,7 @@ async function findGame(gameName, accessToken) {
             "Content-Type": "text/plain"
         },
         body: `search "${gameName}";
-                fields company,description,game,name,platform,published_at;
+                fields name, cover.*, rating;
                 limit 10;`
     });
 

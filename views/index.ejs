@@ -8,10 +8,19 @@
 </head>
 <body>
     <h1>Game Collection App</h1>
+    <input id="game-search-input" type="text" value="" placeholder="Add a game to your collection...">
+    <button id="add-game-button">Add Game</button>
     <script type="module">
-        let response = await fetch("/game/undertale");
-        let json = await response.json()
-        console.log(json)
+        const addGameButtonEl = document.querySelector("#add-game-button");
+        const gameSearchInputEl = document.querySelector("#game-search-input");
+
+        addGameButtonEl.addEventListener("click", async() => {
+            let response = await fetch(`/game/${gameSearchInputEl.value}`);
+            let json = await response.json()
+            console.log(json)
+            
+        });
+
     </script>
 </body>
 </html>
