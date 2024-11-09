@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="">
         <h1>Lookup Games</h1>
@@ -20,17 +22,17 @@
     </div>
     <h2>Current Collection</h2>
     <div id="collection">
-        
+
     </div>
     <script type="module">
         const searchButtonEl = document.querySelector("#search-button");
         const gameSearchInputEl = document.querySelector("#game-search-input");
         const foundGamesSection = document.querySelector("#found-games");
-        
+
 
         searchButtonEl.addEventListener("click", async () => {
             await performSearch();
-            
+
         });
 
         function renderGameToScreen(game) {
@@ -47,14 +49,23 @@
                 gameImageEl.src = game.cover.url;
                 gameDivEl.appendChild(gameImageEl);
             }
-            
+
+            // Add a plus sign instead
+            /* const addGameToCollectionButtonEl = document.createElement("button");
+            addGameToCollectionButtonEl.textContent = "Add game to collection";
+            addGameToCollectionButtonEl.addEventListener("click", (e) => {
+                console.log("I clicked")
+            });
+
+            gameDivEl.appendChild(addGameToCollectionButtonEl);*/
+
             return gameDivEl;
-            
+
         }
 
         gameSearchInputEl.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); 
+                e.preventDefault();
                 performSearch();
             }
         });
@@ -74,4 +85,5 @@
 
     </script>
 </body>
+
 </html>
