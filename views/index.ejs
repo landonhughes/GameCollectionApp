@@ -8,6 +8,24 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
+<style>
+    .plus-button {
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .plus-button:hover {
+        background-color: #45a049;
+    }
+</style>
 
 <body>
     <div id="">
@@ -51,13 +69,14 @@
             }
 
             // Add a plus sign instead
-            /* const addGameToCollectionButtonEl = document.createElement("button");
+            const addGameToCollectionButtonEl = document.createElement("button");
+            addGameToCollectionButtonEl.className = "plus-button";
             addGameToCollectionButtonEl.textContent = "Add game to collection";
             addGameToCollectionButtonEl.addEventListener("click", (e) => {
                 console.log("I clicked")
             });
 
-            gameDivEl.appendChild(addGameToCollectionButtonEl);*/
+            gameDivEl.appendChild(addGameToCollectionButtonEl);
 
             return gameDivEl;
 
