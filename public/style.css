@@ -5,13 +5,13 @@
     font-family: Arial, Helvetica, sans-serif;
     color: var(--white);
 }
+
 :root {
     --white: #fff;
     --card-color: #1E1E1E;
     --bg-color: #161616;
     --green: #7CFFB0;
     --content-width:  min(1200px, 100%);
-
 }
 body {
     background-color: var(--bg-color);
@@ -19,6 +19,7 @@ body {
 h1 {
     margin-top: 3rem;
 }
+
 #lookup-games-section, #found-games {
     width: var(--content-width);
 }
@@ -99,3 +100,29 @@ h1 {
 #search-button {
     color: var(--card-color);
 }
+
+.plus-button, .remove-button {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+.plus-button {
+    background-color: var(--green);
+    color: var(--bg-color);
+}
+.plus-button:hover {
+    background-color: var(--green);
+}
+.remove-button {
+    background-color: red;
+}
+

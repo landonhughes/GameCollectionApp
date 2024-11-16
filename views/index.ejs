@@ -8,24 +8,6 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
-<style>
-    .plus-button {
-        padding: 10px 20px;
-        font-size: 24px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .plus-button:hover {
-        background-color: #45a049;
-    }
-</style>
 
 <body>
     <div id="">
@@ -46,7 +28,7 @@
         const searchButtonEl = document.querySelector("#search-button");
         const gameSearchInputEl = document.querySelector("#game-search-input");
         const foundGamesSection = document.querySelector("#found-games");
-
+        const collectionEl = document.querySelector("#collection");
 
         searchButtonEl.addEventListener("click", async () => {
             await performSearch();
@@ -69,16 +51,49 @@
             }
 
             // Add a plus sign instead
+            //toggle between buttons
             const addGameToCollectionButtonEl = document.createElement("button");
             addGameToCollectionButtonEl.className = "plus-button";
-            addGameToCollectionButtonEl.textContent = "Add game to collection";
-            addGameToCollectionButtonEl.addEventListener("click", (e) => {
-                console.log("I clicked")
-            });
-
+            addGameToCollectionButtonEl.textContent = "+";
+            addGameToCollectionButtonEl.addEventListener("click", addButtonCallback);
             gameDivEl.appendChild(addGameToCollectionButtonEl);
 
             return gameDivEl;
+
+        }
+
+        function addButtonCallback(event) {
+
+            const card = event.target.parentElement;
+            const cardCopy = card.cloneNode(true)
+            //remove the add button
+            cardCopy.lastElementChild.remove();
+            //add remove button instead
+            const removeGameFromCollectionButtonEl = document.createElement("button");
+            removeGameFromCollectionButtonEl.className = "remove-button";
+            removeGameFromCollectionButtonEl.textContent = "-";
+            removeGameFromCollectionButtonEl.addEventListener("click", removeButtonCallback);
+
+            cardCopy.appendChild(removeGameFromCollectionButtonEl);
+            collectionEl.appendChild(cardCopy);
+            foundGamesSection.removeChild(card);
+
+        }
+
+        function removeButtonCallback() {
+
+            const card = event.target.parentElement;
+            const cardCopy = card.cloneNode(true);
+            //remove the remove button
+            cardCopy.lastElementChild.remove();
+            //add the add button
+            const addGameToFoundItemsButtonEl = document.createElement("button");
+            addGameToFoundItemsButtonEl.className = "plus-button";
+            addGameToFoundItemsButtonEl.textContent = "+";
+            addGameToFoundItemsButtonEl.addEventListener("click", addButtonCallback);
+            cardCopy.appendChild(addGameToFoundItemsButtonEl);
+            foundGamesSection.appendChild(cardCopy);
+            collectionEl.removeChild(card);
 
         }
 
