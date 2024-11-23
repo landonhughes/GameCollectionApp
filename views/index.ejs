@@ -31,6 +31,11 @@
         const foundGamesSection = document.querySelector("#found-games");
         const collectionEl = document.querySelector("#collection");
 
+        const ADD_GAME_TEXT = "Add Game +";
+        const REMOVE_GAME_TEXT = "Add Game -";
+        const PLUS_BUTTON_CLASS_NAME = "plus-button";
+        const REMOVE_BUTTON_CLASS_NAME = "remove-button";
+
         searchButtonEl.addEventListener("click", async () => {
             await performSearch();
         });
@@ -58,7 +63,7 @@
                 gameDivEl.appendChild(gameImageEl);
             }
 
-            const addButton = createButton("plus-button", "+", addButtonCallback);
+            const addButton = createButton(PLUS_BUTTON_CLASS_NAME, ADD_GAME_TEXT, addButtonCallback);
             gameDivEl.appendChild(addButton);
 
             return gameDivEl;
@@ -77,12 +82,12 @@
 
         function addButtonCallback(event) {
             const card = event.target.parentElement;
-            moveCard(card, foundGamesSection, collectionEl, "remove-button", "Remove Game -", removeButtonCallback);
+            moveCard(card, foundGamesSection, collectionEl, REMOVE_BUTTON_CLASS_NAME, REMOVE_GAME_TEXT, removeButtonCallback);
         }
 
         function removeButtonCallback(event) {
             const card = event.target.parentElement;
-            moveCard(card, collectionEl, foundGamesSection, "plus-button", "Add Game +", addButtonCallback);
+            moveCard(card, collectionEl, foundGamesSection, PLUS_BUTTON_CLASS_NAME, ADD_GAME_TEXT, addButtonCallback);
         }
 
         gameSearchInputEl.addEventListener('keypress', (e) => {
