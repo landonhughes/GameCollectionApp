@@ -100,6 +100,7 @@
         async function performSearch() {
             let response = await fetch(`/game/${gameSearchInputEl.value}`);
             let jsonArrayOfGames = await response.json();
+
             foundGamesSection.innerHTML = "";
             for (const game of jsonArrayOfGames) {
                 const gameDiv = renderGameToScreen(game);
@@ -107,6 +108,13 @@
             }
 
             console.log(jsonArrayOfGames);
+        }
+        function isGamesResponseValid(jsonArray) {
+            if (jsonArray == null) {
+                console.log("No Array :/")
+                return false;
+            }
+            return typeof obj[Symbol.iterator] === 'function';
         }
 
 
