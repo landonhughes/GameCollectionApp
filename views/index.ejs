@@ -102,6 +102,10 @@
             let jsonArrayOfGames = await response.json();
 
             foundGamesSection.innerHTML = "";
+
+            if (!isGamesResponseValid(jsonArrayOfGames)) {
+                return;
+            }
             for (const game of jsonArrayOfGames) {
                 const gameDiv = renderGameToScreen(game);
                 foundGamesSection.appendChild(gameDiv);
@@ -109,11 +113,13 @@
 
             console.log(jsonArrayOfGames);
         }
+
         function isGamesResponseValid(jsonArray) {
             if (jsonArray == null) {
                 console.log("No Array :/")
                 return false;
             }
+            console.log("Can iterate");
             return typeof obj[Symbol.iterator] === 'function';
         }
 
