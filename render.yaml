@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: game-collection
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: CLIENT_ID
+        sync: false
+      - key: CLIENT_SECRET
+        sync: false
+    plan: free
