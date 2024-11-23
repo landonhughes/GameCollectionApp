@@ -100,7 +100,7 @@
         async function performSearch() {
             let response = await fetch(`/game/${gameSearchInputEl.value}`);
             let jsonArrayOfGames = await response.json();
-
+            foundGamesSection.innerHTML = "";
             for (const game of jsonArrayOfGames) {
                 const gameDiv = renderGameToScreen(game);
                 foundGamesSection.appendChild(gameDiv);
