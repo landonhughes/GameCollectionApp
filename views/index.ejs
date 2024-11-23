@@ -7,10 +7,11 @@
     <title>Game Collection</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- Using search icon from font awesome -->
 </head>
 
 <body>
-    <div id="">
+    <div>
         <h1>Lookup Games</h1>
         <div id="search--wrapper">
             <input id="game-search-input" type="text" value="" placeholder="Add a game to your collection...">
@@ -76,12 +77,12 @@
 
         function addButtonCallback(event) {
             const card = event.target.parentElement;
-            moveCard(card, foundGamesSection, collectionEl, "remove-button", "-", removeButtonCallback);
+            moveCard(card, foundGamesSection, collectionEl, "remove-button", "Remove Game -", removeButtonCallback);
         }
 
         function removeButtonCallback(event) {
             const card = event.target.parentElement;
-            moveCard(card, collectionEl, foundGamesSection, "plus-button", "+", addButtonCallback);
+            moveCard(card, collectionEl, foundGamesSection, "plus-button", "Add Game +", addButtonCallback);
         }
 
         gameSearchInputEl.addEventListener('keypress', (e) => {

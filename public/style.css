@@ -21,6 +21,7 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--white);
+  text-align: center;
 }
 
 body {
@@ -30,11 +31,17 @@ body {
 /* layout */
 h1 {
   margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
 }
 
-#lookup-games-section,
+h2 {
+  margin-top: var(--spacing-lg);
+}
+
 #found-games {
   width: var(--content-width);
+  margin-inline: auto;
+  margin-top: var(--spacing-lg);
 }
 
 /* search */
@@ -70,11 +77,13 @@ h1 {
 }
 
 /* games grid */
-#found-games {
+#found-games,
+#collection {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  margin-inline: auto;
+  margin-top: var(--spacing-lg);
+  justify-content: center;
 }
 
 /* cards */
