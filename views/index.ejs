@@ -104,6 +104,7 @@
             foundGamesSection.innerHTML = "";
 
             if (!isGamesResponseValid(jsonArrayOfGames)) {
+                console.log("Invalid response");
                 return;
             }
             for (const game of jsonArrayOfGames) {
@@ -119,7 +120,6 @@
                 console.log("No Array :/")
                 return false;
             }
-            console.log("Can iterate");
             return typeof jsonArray[Symbol.iterator] === 'function';
         }
 
