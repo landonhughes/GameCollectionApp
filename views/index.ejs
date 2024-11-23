@@ -104,6 +104,7 @@
             foundGamesSection.innerHTML = "";
 
             console.log(jsonArrayOfGames);
+
             if (!jsonArrayOfGames) {
                 return;
             }
@@ -111,16 +112,6 @@
                 const gameDiv = renderGameToScreen(game);
                 foundGamesSection.appendChild(gameDiv);
             }
-
-            console.log(jsonArrayOfGames);
-        }
-
-        function isGamesResponseValid(jsonArray) {
-            if (jsonArray == null) {
-                console.log("No Array :/")
-                return false;
-            }
-            return typeof jsonArray[Symbol.iterator] === 'function';
         }
 
 
